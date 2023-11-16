@@ -1,0 +1,19 @@
+{
+  "name": "installed",
+  "version": "1.0.0",
+  "description": "This is a react-setup",
+  "scripts": {
+    "dev": "npx parcel public/index.html",
+    "build": "parcel build src/index.js",
+    "new-component": "node node_modules/component/createComponent.js"
+  },
+  "author": "Sheraz Manzoor",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.10.2"
+  }
+}
