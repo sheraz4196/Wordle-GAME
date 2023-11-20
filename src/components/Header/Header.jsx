@@ -5,7 +5,7 @@ function Header() {
     <header className="header">
       <div className="game-info">
         <img
-          src="./public/favicon.09ab7678.png"
+          src="../../public/favicon.09ab7678.png"
           alt="Game Icon"
           className="game-icon"
         />
