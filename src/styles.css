@@ -29,7 +29,54 @@ body {
     --game-spacing: 8px;
   }
 }
-
+.header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  height: var(--header-height);
+  border-bottom: 1px solid var(--color-gray-700);
+  color: var(--color-gray-300);
+  /* overflow: hidden; */
+}
+.game-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.game-icon {
+  width: 8%;
+  height: 8%;
+}
+.header .menu-icon-open {
+  background: #3498db;
+  border: 2px solid #1a5676;
+  border-radius: 50%;
+  height: 2.4rem;
+  width: 2.4rem;
+}
+.header .menu-icon-open span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.header .menu-icon-open .icon-hidden,
+.header .menu .navigation li button .btn-hidden {
+  display: none;
+}
+.sound-toggles span {
+  display: flex;
+  gap: 1rem;
+}
+.open-menu,
+.close-menu {
+  height: 2rem;
+  width: 2rem;
+  stroke: #f0f0f0;
+  transition: all 0.3s;
+}
 button {
   margin: 0;
   padding: 0;
@@ -43,32 +90,31 @@ button {
 .wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
-}
-
-header {
-  display: flex;
-  height: var(--header-height);
-  border-bottom: 1px solid var(--color-gray-700);
-  color: var(--color-gray-300);
-}
-
-header .side {
-  width: var(--header-height);
-  display: grid;
-  place-content: center;
 }
 
 h1 {
-  flex: 1;
   font-size: 2rem;
   line-height: var(--header-height);
   text-align: center;
+  text-transform: uppercase;
 }
 
 @media (max-width: 25rem) {
   h1 {
     font-size: 1.25rem;
+  }
+  .header .menu-icon-open {
+    height: 1.4rem;
+    width: 1.4rem;
+  }
+  .open-menu,
+  .close-menu {
+    height: 1.25rem;
+    width: 1.25rem;
+  }
+  .game-icon {
+    width: 6%;
+    height: 6%;
   }
 }
 
@@ -81,6 +127,7 @@ h1 {
   margin: 0 auto;
   min-width: 250px;
   max-width: min(500px, 58vh, 100%);
+  animation: moveToRight 0.4s;
 }
 
 .guess-results {
@@ -163,7 +210,15 @@ h1 {
   padding: 8px 16px;
   outline-offset: 4px;
 }
-
+input {
+  border: 3px solid #3498db;
+  border-radius: 5px;
+  font-weight: 600;
+}
+input:focus {
+  outline: 3px solid #3498db;
+  border: 3px solid transparent;
+}
 .banner {
   position: fixed;
   left: 0;
@@ -222,17 +277,6 @@ h1 {
   margin-bottom: 0.5em;
 }
 
-/*
-  Keyframe animations
-*/
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0%);
-  }
-}
 .restart {
   margin-top: 10px;
   padding: 5px 10px;
@@ -260,4 +304,113 @@ h1 {
   background: #f7f7f7;
   border: 3px solid #333;
   text-align: center;
+}
+
+.instructions {
+  background: #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #888;
+  margin: 0;
+  margin-top: 1rem;
+  display: none;
+  transition: all 0.4s;
+}
+.instructions-open {
+  display: block;
+}
+.instructions__heading {
+  color: #222;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.instructions__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+}
+.instructions__list li {
+  color: #444;
+  font-size: 12px;
+}
+.color {
+  display: inline-block;
+  text-align: center;
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  margin: 0 5px;
+}
+.success {
+  background: var(--color-success);
+}
+.warning {
+  background: var(--color-warning);
+}
+.incorrect {
+  background: var(--color-gray-300);
+}
+
+.menu__close {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  transition: all 0.4s;
+}
+.menu__open {
+  position: absolute;
+  border-radius: 5px;
+  top: 110%;
+  right: 1%;
+  background: #e0e5ec;
+  padding: 2rem 3rem;
+  z-index: 1;
+  overflow: hidden;
+  transition: all 0.4s !important;
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.4);
+}
+.navigation {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0;
+  overflow: hidden;
+}
+
+.navigation li button {
+  display: flex;
+  gap: 1rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #333;
+}
+.footer {
+  color: #121212;
+  border-top: 1px solid var(--color-gray-700);
+  padding: 1rem;
+}
+/*
+  Keyframe animations
+*/
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+@keyframes moveToRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
