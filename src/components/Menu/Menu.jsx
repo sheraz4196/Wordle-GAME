@@ -127,7 +127,7 @@ function Menu() {
           </li>
         </ul>
       </div>
-      <audio ref={audioRef} src="../../../public/bg-music.mp3" loop />
+      <audio ref={audioRef} src="/public/bg-music.mp3" loop />
     </div>
   );
 }
